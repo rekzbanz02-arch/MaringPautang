@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lending System v2.0</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h2>💰 Lending System</h2>
+    <button id="logout-btn" class="hidden">Logout</button>
+  </header>
+
+  <div class="container">
+    <!-- LOGIN SECTION -->
+    <section id="login-section" class="section">
+      <h3>Login</h3>
+      <p id="login-status">Loading data...</p>
+      <input type="password" id="login-pass" placeholder="Enter password">
+      <button id="login-btn" disabled>Login</button>
+    </section>
+
+    <!-- MAIN DASHBOARD -->
+    <div id="main-dashboard" class="hidden">
+      <section id="welcome-page" class="section">
+        <h2>Welcome to the Lending System</h2>
+        <p>Manage borrowers, loans, and payments efficiently.</p>
+        <button id="get-started-btn">🚀 Get Started</button>
+      </section>
+
+      <!-- NAVIGATION -->
+      <nav class="tab-bar hidden" id="main-nav">
+        <button class="tab-btn active" data-tab="dashboard-summary">Dashboard</button>
+        <button class="tab-btn" data-tab="borrowers">Borrowers</button>
+        <button class="tab-btn" data-tab="loans">Loans</button>
+        <button class="tab-btn" data-tab="payments">Payments</button>
+        <button class="tab-btn" data-tab="settings">Settings</button>
+      </nav>
+
+      <!-- DASHBOARD -->
+      <section id="dashboard-summary" class="section">
+        <h3>📊 Dashboard Summary</h3>
+        <div id="summary"></div>
+        <canvas id="loanChart" width="400" height="200"></canvas>
+      </section>
+
+      <!-- BORROWERS -->
+      <section id="borrowers" class="section">
+        <h3>Borrower Management</h3>
+        <input type="text" id="borrower-name" placeholder="New borrower name">
+        <button id="add-borrower-btn">Add Borrower</button>
+        <table>
+        <br><br>
+          <thead><tr><th>Name</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="borrower-table"></tbody>
+        </table>
+      </section>
+
+     <!-- LOANS -->
+<section id="loans" class="section">
+  <h3>Create Loan</h3>
+
+  <select id="loan-borrower"></select>
+  <select id="loan-type">
+    <option value="Cash">Cash</option>
+    <option value="Groceries">Groceries</option>
+  </select>
+
+  <!-- 🆕 Added Date Input -->
+  <input type="date" id="loan-date">
+
+  <input type="number" id="loan-amount" placeholder="Principal amount">
+  <button id="create-loan-btn">Create Loan</button>
+
+  <br><br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th> <!-- 🆕 Added Date Column -->
+        <th>Borrower</th>
+        <th>Type</th>
+        <th>Principal</th>
+        <th>Interest</th>
+        <th>Penalty</th>
+        <th>Balance</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="loan-table"></tbody>
+  </table>
+</section>
+
+      <!-- PAYMENTS -->
+      <section id="payments" class="section">
+  <h3>Record Payment</h3>
+  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+    <select id="payment-loan"></select>
+    <span id="loan-type-label" >—</span>
+  </div>
+  <input type="date" id="payment-date">
+  <input type="number" id="payment-amount" placeholder="Amount">
+  <button id="record-payment-btn">Record</button>
+
+  <h4>Payment Records</h4>
+  <table>
+    <thead>
+  <tr>
+    <th>Date</th>
+    <th>Borrower</th>
+    <th>Type</th>
+    <th>Amount</th>
+    <th>Remaining</th>
+    <th>Status</th>
+  </tr>
+</thead>
+    <tbody id="payment-table"></tbody>
+  </table>
+</section>
+
+      <!-- SETTINGS -->
+      <section id="settings" class="section hidden">
+        <h3>Settings</h3>
+        <label>Change Password</label>
+        <input type="password" id="new-password" placeholder="New Admin Password">
+        <button id="change-password-btn">Update</button>
+        <hr>
+        <label>Interest Rate (%)</label>
+        <input type="number" id="interest-rate" step="0.01">
+        <label>Penalty Rate (%)</label>
+        <input type="number" id="penalty-rate" step="0.01">
+        <button id="save-rates-btn">Save Rates</button>
+        <p id="rate-display"></p>
+        <hr>
+        <h4>Manage Users</h4>
+        <input type="password" id="new-user-pass" placeholder="Enter new user password">
+        <button id="add-user-btn">Add User</button>
+        <table>
+          <thead><tr><th>#</th><th>Password</th><th>Action</th></tr></thead>
+          <tbody id="user-table"></tbody>
+        </table>
+        
+        <hr>
+<h4>Login Logs</h4>
+<table>
+  <thead><tr><th>#</th><th>Role</th><th>Password</th><th>Time</th></tr></thead>
+  <tbody id="login-log-table"></tbody>
+</table>
+        
+        <hr>
+        <button id="reset-btn" class="danger">⚠️ Reset Data</button>
+      </section>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/monitor.js"></script>
+</body> 
+</html>
